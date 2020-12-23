@@ -9,9 +9,8 @@ class Discriminator(nn.Module):
         self.linear1 = nn.Linear(input_dim, hidden_dim)
         self.relu = nn.LeakyReLU()
         self.linear2 = nn.Linear(hidden_dim, 1)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         h = self.relu(self.linear1(self.dropout(x)))
-        y = self.sigmoid(self.linear2(self.dropout(h)))
+        y = self.linear2(self.dropout(h))
         return y
